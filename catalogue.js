@@ -1,3 +1,5 @@
+// Creating products-----------------
+
 var products = [
   {
     id:0,
@@ -10,7 +12,7 @@ var products = [
     id:1,
     name:'Foo',
     description:'Ironha nihoheto',
-    image: '/img/foo.png',
+    image: 'img/foo.png',
     price: 13.13
   }
 ]
@@ -30,9 +32,6 @@ products.forEach(function(item)
   display();
 });*/
 
-
-
-console.log('test1');
 products.forEach(function(item){
   var arr = ['#prod'+item.id,'#img'+item.id,'#desc'+item.id];
   var $product = $(arr[0]);
@@ -44,3 +43,33 @@ products.forEach(function(item){
   console.log(item.image);
   $proddesc.text(item.description);
 });
+
+// Adding items to carts----------------------
+
+var cart = []
+var button = [$('#button0'),$('#button1')]
+console.log($('#button0'))
+console.log(button);
+/*button.forEach(function (btn) {
+  btn.click(function(event) {
+    cart.push(products[0]);
+    console.log(cart);
+    //var name = event.target.name.value
+    //function contents here
+  });
+});
+*/
+
+for (var i=0; i<button.length;i++) {
+  console.log(i+'a');
+  button[i].click(function() {
+    console.log(button[i]+"butt")
+    cart.push(products[i]);
+    console.log(cart);
+    console.log(i);
+  });
+}
+console.log(i+'b');
+
+
+
