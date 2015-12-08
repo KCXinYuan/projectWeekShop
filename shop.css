@@ -1,0 +1,44 @@
+.prodContainer {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 50px;
+}
+
+.checkout {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkoutBtn {
+  height: 20px;
+  margin-left: 30px;
+  margin-top: 14px;
+}
+
+.checkoutBtn a {
+  text-decoration: none;
+}
+
+.prodImg {
+  padding-right: 30px;
+  margin-top: 20px;
+ }
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+th {
+  padding: 5px 10px;
+  border: 1px solid black;
+}
+
+td {
+  padding: 5px 30px;
+  border: 1px solid black;
+}
+
+tr:nth-child(odd) {
+  background: #eee;
+}

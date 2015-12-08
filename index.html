@@ -2,15 +2,20 @@
 <html>
 <head>
 <title>Catalogue</title>
+<link rel="stylesheet" type="text/css" href="shop.css">
 </head>
 <body>
   <header>
     <img>
+    <div class="checkout">
+      <p>item(s) in cart: <span id="numItem">0</span></p>
+      <button class="checkoutBtn"><a href="checkout.html">checkout</a></button>
+    </div>
     <h1>Nile</h1>
   </header>
 
   <main>
-    <div>
+    <!-- <div>
       <img id='img0'>
       <h2 id='prod0'></h2>
       <p id='desc0'></p>
@@ -21,8 +26,9 @@
       <h2 id='prod1'></h2>
       <p id='desc1'</h2>
       <button></button>
-    </div>
+    </div> -->
 
+    <div id="itemList"></div>
 
   </main>
 
