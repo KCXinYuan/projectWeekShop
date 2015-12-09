@@ -7,22 +7,57 @@
 .checkout {
   display: flex;
   flex-direction: row;
+  float: right;
+  align-items:baseline;
 }
-
+#cartItems {
+  font-size: 20px;
+}
 .checkoutBtn {
   height: 20px;
-  margin-left: 30px;
+  margin-left: 10px;
   margin-top: 14px;
 }
 
 .checkoutBtn a {
   text-decoration: none;
+  font-size: 16px;
 }
 
 .prodImg {
   padding-right: 30px;
   margin-top: 20px;
  }
+
+body {
+  display:flex;
+  flex-direction: column;
+
+}
+
+.container {
+  display:flex;
+  flex:1;
+}
+
+main {
+  flex:3;
+  order:2;
+}
+
+nav, aside {
+  flex: 0 0 12em;
+}
+
+nav {
+  order:1;
+  flex:1;
+}
+
+aside {
+  order: 3;
+  flex: 1;
+}
 
 table {
   border-collapse: collapse;
