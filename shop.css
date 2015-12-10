@@ -146,27 +146,6 @@ aside {
   border-width: 1px;
 }
 
-ul {
-  list-style-type: none;
-  font-size: 24px;
-}
-
-li {
-  opacity: 0.50;
-  transition: opacity .75s ease-in-out;
-}
-
-li:hover {
-  opacity: 1;
-  background-color: #c2c2d6;
-}
-
-li a {
-  text-decoration: none;
-  color: black;
-  cursor: pointer;
-}
-
 table {
   border-collapse: collapse;
   margin: auto;
