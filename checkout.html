@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Checkout</title>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans: 400,700">
 <link rel="stylesheet" type="text/css" href="shop.css">
 </head>
 <body>
@@ -10,13 +11,16 @@
     <h1>Nile</h1>
   </header>
   <section>
+  <p class="darkGreen" id="ordSubmitted"></p>
   <div>
       <table id="orderTable">
         <thead>
           <tr>
             <th>ID</th>
+            <th>Qty</th>
             <th>Item</th>
-            <th>Price</th>
+            <th>Unit Price</th>
+            <th>Total Price</th>
             <th></th>
           </tr>
         </thead>
@@ -24,6 +28,7 @@
         </tbody>
       </table>
     </div>
+    <p><a class="darkGreen" href="index.html">Continue Shopping</a></p>
   </section>
   <aside>
     <ul>
