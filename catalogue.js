@@ -5,15 +5,27 @@ function getProducts(callback) {
   });
 }
 
-function getUser() {
+$('.checkoutBtn').on('click',function(){
+  sessionStorage.setItem('clicked', 'checkout');
+});
+$('.account').on('click',function(){
+  sessionStorage.setItem('clicked', 'account');
+});
+function getUser(e) {
   $.get('http://70.98.210.16:3000/users',function(users){
     var $userName = $('#userName').val();
     var $password = $('#password').val();
     sessionStorage.setItem('userName', $userName);
     for(var i = 0; i < users.length; i++) {
       if((users[i].userName === $userName) && (users[i].password === $password)) {
+        if(sessionStorage.getItem('clicked') === 'checkout') {
         window.open('checkout.html', '_self');
         return;
+        }
+        if(sessionStorage.getItem('clicked') === 'account') {
+        window.open('user.html', '_self');
+        return;
+        }
       }
       if((users.length - 1) === i) {
         alert("Invalid username and password!");
@@ -29,7 +41,7 @@ var $itemList = $('#itemList');
 // get each item from products and add appropriate html tags to each item
 getProducts(function(products) {
   products.forEach(function(item){
-    productList += '<div class="prodContainer"><img class="prodImg" src=' + item.image + ' width=140 height=140 ><div><h2>' + item.name + '</h2><p>' + item.description + '</p><p>$'+ item.price +'</p><button class="prodBtn"id=' + item.id + '>Add to cart</button><p id=></p></div></div>';
+    productList += '<div class="prodContainer"><img class="prodImg" src=' + item.image + ' width=140 height=140 ><div width=200><h2>' + item.name + '</h2><p>' + item.description + '</p><p>$'+ item.price +'</p><button class="prodBtn"id=' + item.id + '>Add to cart</button><p id=></p></div></div>';
   });
   $itemList.html(productList); // add items to itemList div in html page
   var $prodBtn = $('.prodBtn');
