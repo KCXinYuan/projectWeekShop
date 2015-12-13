@@ -64,6 +64,7 @@ var userCart = [];
 var $numItem = $('#numItem');
 // add items in userCart array to table
 function addTblRow() {
+  $('#userLogin').text('Welcome back '+ sessionStorage.getItem('userName')); //userName print out
   userCart.forEach(function(item) {
   $('#orderTable tbody').append('<tr><td class="id">'+ item[0] +'</td><td class="qty"><input class="qty" type="number" value="1"></td><td class="name">'+ item[1] +'</td><td class="unitPrice">'+ item[2] +'</td><td class="totalPrice">'+ item[2] +'</td><td><button class="removeBtn" id="'+ item[0] +'">remove</button></td></tr>');
   $('.removeBtn').on('click', removeItem);
@@ -129,7 +130,6 @@ function submitOrder() {
     this.unitPrice =  unitPrice
   }
   $('#orderTable').hide();
-  $('#ordSubmitted').html('Your Order #123 has been submitted for processing. Thank you for shopping at Nile!');
   $('.id').each(function() {
     var id = $(this).text();
     var qty = $(this).siblings('.qty').children().val();
@@ -156,6 +156,7 @@ function getOrders() {
     $.get('http://70.98.210.16:3000/orders',function(orders){
       var len = (orders.length - 1);
       console.log(orders[len].orderID);
+      $('#ordSubmitted').html('Your Order #'+ orders[len].orderID +' has been submitted for processing. Thank you for shopping at Nile!');
     });
   }
 
