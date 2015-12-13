@@ -22,16 +22,26 @@ var products = [
   }
 ]
 
+var counter = localStorage.length;
 var productList = '';
 var $itemList = $('#itemList');
+var userCart = [];
+
+
 // get each item from products and add appropriate html tags to each item
 products.forEach(function(item){
-  productList += '<div class="prodContainer"><img class="prodImg" src=' + item.image + ' width=140 height=140 ><div><h2>' + item.name + '</h2><p>' + item.description + '</p><p>$'+ item.price +'</p><button class="prodBtn"id=' + item.id + '>Add to cart</button><p id=></p></div></div>';
+  productList += '<div class="prodContainer">'
+  productList += '<img class="prodImg" src=' + item.image + ' width=140 height=140 >'
+  productList += '<div><h2>' + item.name + '</h2>'
+  productList += '<p>' + item.description + '</p>'
+  productList += '<p>$'+ item.price +'</p>'
+  productList += '<button class="prodBtn"id=' + item.id + '>Add to cart</button>'
+  productList += '<p id=></p></div></div>';
 });
 $itemList.html(productList); // add items to itemList div in html page
 
 var $prodBtn = $('.prodBtn');
-var counter = localStorage.length;
+
 // add item as array to localStorage when button is clicked
 $prodBtn.on('click', function(e) {
   products.forEach(function(item) {
@@ -44,15 +54,27 @@ $prodBtn.on('click', function(e) {
   });
 });
 
-var userCart = [];
 var $numItem = $('#numItem');
 // add items in userCart array to table
 function addTblRow() {
+	var i = 0;
   userCart.forEach(function(item) {
-  $('#orderTable tbody').append('<tr><td>'+ item[0] +'</td><td><input class="qty" type="number" value="1"></td><td>'+ item[1] +'</td><td class="unitPrice">'+ item[2] +'</td><td class="totalPrice">'+ item[2] +'</td><td><button class="removeBtn" id="'+ item[0] +'">remove</button></td></tr>');
+  /*$('#orderTable tbody').append('<tr><td>'+ item[0] +'</td><td><input class="qty" type="number" value="1"></td><td>'+ item[1] +'</td><td class="unitPrice">'+ item[2] +'</td><td class="totalPrice">'+ item[2] +'</td><td><button class="removeBtn" id="'+ item[0] +'">remove</button></td></tr>');
   $('.removeBtn').on('click', removeItem);
   $('.qty').on('keyup', upQty);
+  $('.qty').on('click', upQty);*/
+  
+  	$('#orderTable tbody').append('<tr id="row' +i+ '"</tr>');
+	$('#row'+i).append('<td>'+ item[0] +'</td>');
+	$('#row'+i).append('<td><input class="qty" type="number" value="1"></td>');
+	$('#row'+i).append('<td>'+ item[1] +'</td>');
+	$('#row'+i).append('<td class="unitPrice">'+ item[2] +'</td>');
+	$('#row'+i).append('<td class="totalPrice">'+ item[2] +'</td>');
+	$('#row'+i).append('<td><button class="removeBtn" id="'+ item[0] +'">remove</button></td>');
+	$('.removeBtn').on('click', removeItem);
+  $('.qty').on('keyup', upQty);
   $('.qty').on('click', upQty);
+	i++;
   });
   addTotal();
 }
