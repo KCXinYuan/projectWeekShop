@@ -1,46 +1,50 @@
-var products = [
-  {
-    id:0,
-    name:'Licorice',
-    description:'Lorem ipsum dolor sit amet',
-    image: 'img/licorice.jpg',
-    price: 5.89
-  },
-  {
-    id:1,
-    name:'Coke',
-    description:'Lorem ipsum dolor sit amet',
-    image: 'img/coke.jpg',
-    price: 13.13
-  },
-  {
-    id:2,
-    name:'Pepsi',
-    description:'Lorem ipsum dolor sit amet',
-    image: 'img/pepsi.jpg',
-    price: 15.99
-  }
-]
+
+function getProducts(callback) {
+  $.get('http://70.98.210.16:3000/products',function(data){
+    callback(data);
+  });
+}
+
+function getUser() {
+  $.get('http://70.98.210.16:3000/users',function(users){
+    var $userName = $('#userName').val();
+    var $password = $('#password').val();
+    sessionStorage.setItem('userName', $userName);
+    for(var i = 0; i < users.length; i++) {
+      if((users[i].userName === $userName) && (users[i].password === $password)) {
+        window.open('checkout.html', '_self');
+        return;
+      }
+      if((users.length - 1) === i) {
+        alert("Invalid username and password!");
+      }
+    }
+  });
+}
+
+$('#formBtn').on('click', getUser);
 
 var productList = '';
 var $itemList = $('#itemList');
 // get each item from products and add appropriate html tags to each item
-products.forEach(function(item){
-  productList += '<div class="prodContainer"><img class="prodImg" src=' + item.image + ' width=140 height=140 ><div><h2>' + item.name + '</h2><p>' + item.description + '</p><p>$'+ item.price +'</p><button class="prodBtn"id=' + item.id + '>Add to cart</button><p id=></p></div></div>';
-});
-$itemList.html(productList); // add items to itemList div in html page
-
-var $prodBtn = $('.prodBtn');
-var counter = localStorage.length;
-// add item as array to localStorage when button is clicked
-$prodBtn.on('click', function(e) {
-  products.forEach(function(item) {
-    if(Number(e.target.id) === item.id) {
-      var $good = $('#'+item.id)
-      $good.after('<p class="darkGreen">You added '+ item.name +' to cart!</p>');
-      localStorage.setItem(item.id, JSON.stringify([item.id, item.name, item.price]));
-      retrieveLocStor();
-    }
+getProducts(function(products) {
+  products.forEach(function(item){
+    productList += '<div class="prodContainer"><img class="prodImg" src=' + item.image + ' width=140 height=140 ><div><h2>' + item.name + '</h2><p>' + item.description + '</p><p>$'+ item.price +'</p><button class="prodBtn"id=' + item.id + '>Add to cart</button><p id=></p></div></div>';
+  });
+  $itemList.html(productList); // add items to itemList div in html page
+  var $prodBtn = $('.prodBtn');
+  // add item as array to localStorage when button is clicked
+  $prodBtn.on('click', function(e) {
+    getProducts(function(products) {
+      products.forEach(function(item) {
+        if(Number(e.target.id) === item.id) {
+          var $good = $('#'+item.id);
+          $good.after('<p class="darkGreen">You added '+ item.name +' to cart!</p>');
+          localStorage.setItem(item.id, JSON.stringify([item.id, item.name, item.price]));
+          retrieveLocStor();
+        }
+      });
+    });
   });
 });
 
@@ -49,7 +53,7 @@ var $numItem = $('#numItem');
 // add items in userCart array to table
 function addTblRow() {
   userCart.forEach(function(item) {
-  $('#orderTable tbody').append('<tr><td>'+ item[0] +'</td><td><input class="qty" type="number" value="1"></td><td>'+ item[1] +'</td><td class="unitPrice">'+ item[2] +'</td><td class="totalPrice">'+ item[2] +'</td><td><button class="removeBtn" id="'+ item[0] +'">remove</button></td></tr>');
+  $('#orderTable tbody').append('<tr><td class="id">'+ item[0] +'</td><td class="qty"><input class="qty" type="number" value="1"></td><td class="name">'+ item[1] +'</td><td class="unitPrice">'+ item[2] +'</td><td class="totalPrice">'+ item[2] +'</td><td><button class="removeBtn" id="'+ item[0] +'">remove</button></td></tr>');
   $('.removeBtn').on('click', removeItem);
   $('.qty').on('keyup', upQty);
   $('.qty').on('click', upQty);
@@ -104,14 +108,58 @@ function addTotal() {
   $('#submitOrd').on('click', submitOrder);
 }
 
-function submitOrder() {
+function submitOrder(callback) {
+  var bought = [];
+  function Order(id, qty, name, unitPrice) {
+    this.id = id;
+    this.qty = qty;
+    this.name = name;
+    this.unitPrice =  unitPrice
+  }
   $('#orderTable').hide();
   $('#ordSubmitted').html('Your Order #123 has been submitted for processing. Thank you for shopping at Nile!');
-  userCart = [];
-  localStorage.clear();
+  $('.id').each(function() {
+    var id = $(this).text();
+    var qty = $(this).siblings('.qty').children().val();
+    var name = $(this).siblings('.name').text();
+    var unitPrice = $(this).siblings('.unitPrice').text();
+    var newOrder = new Order(id, qty, name, unitPrice);
+    bought.push(newOrder);
+
+    });
+  $.ajax({
+     url: 'http://70.98.210.16:3000/orders',
+     type: "POST",
+     data: JSON.stringify({userID:sessionStorage.getItem('userName'),date:Date(),purchased:bought}),
+     processData: false,
+     contentType: "application/json; charset=UTF-8",
+     complete: function() { console.log('done') }
+  });
+  callback()
+
+  /*getOrders(function(orders) {
+    var len = (orders.length - 1)
+    console.log(orders[len].orderID);
+  });
+  //userCart = [];
+  //localStorage.clear();*/
 }
+
+function getOrders(callback) {
+    $.get('http://70.98.210.16:3000/orders',function(data){
+      callback(data)
+
+    });
+  }
+
+getOrders(function(orders) {
+  var len = (orders.length - 1)
+      console.log(orders[len].orderID);
+})
+
 // push clicked item to userCart Array
 function retrieveLocStor() {
+  var counter = localStorage.length;
   var retrieveData = localStorage.getItem(counter - 1);
   userCart.push(JSON.parse(retrieveData));
   $numItem.text(localStorage.length);
@@ -126,3 +174,4 @@ function updateUserCart() {
   }
 }
 updateUserCart();
+
