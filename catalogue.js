@@ -148,8 +148,8 @@ function submitOrder() {
      complete: function() { console.log('done') }
   }).done(getOrders);
 
-  //userCart = [];
-  //localStorage.clear();
+  userCart = [];
+  localStorage.clear();
 }
 
 function getOrders() {
