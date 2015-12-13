@@ -41,7 +41,7 @@ var $itemList = $('#itemList');
 // get each item from products and add appropriate html tags to each item
 getProducts(function(products) {
   products.forEach(function(item){
-    productList += '<div class="prodContainer"><img class="prodImg" src=' + item.image + ' width=140 height=140 ><div width=200><h2>' + item.name + '</h2><p>' + item.description + '</p><p>$'+ item.price +'</p><button class="prodBtn"id=' + item.id + '>Add to cart</button><p id=></p></div></div>';
+    productList += '<div class="prodContainer"><img class="prodImg" src=' + item.image + ' width=140 height=140 ><div><h2>' + item.name + '</h2><p>' + item.description + '</p><p>$'+ item.price +'</p><button class="prodBtn"id=' + item.id + '>Add to cart</button><p id=></p></div></div>';
   });
   $itemList.html(productList); // add items to itemList div in html page
   var $prodBtn = $('.prodBtn');
