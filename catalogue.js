@@ -108,7 +108,7 @@ function addTotal() {
   $('#submitOrd').on('click', submitOrder);
 }
 
-function submitOrder(callback) {
+function submitOrder() {
   var bought = [];
   function Order(id, qty, name, unitPrice) {
     this.id = id;
@@ -134,28 +134,15 @@ function submitOrder(callback) {
      processData: false,
      contentType: "application/json; charset=UTF-8",
      complete: function() { console.log('done') }
-  });
-  callback()
-
-  /*getOrders(function(orders) {
-    var len = (orders.length - 1)
-    console.log(orders[len].orderID);
-  });
-  //userCart = [];
-  //localStorage.clear();*/
+  }).done(getOrders);
 }
 
-function getOrders(callback) {
-    $.get('http://70.98.210.16:3000/orders',function(data){
-      callback(data)
-
+function getOrders() {
+    $.get('http://70.98.210.16:3000/orders',function(orders){
+      var len = (orders.length - 1);
+      console.log(orders[len].orderID);
     });
   }
-
-getOrders(function(orders) {
-  var len = (orders.length - 1)
-      console.log(orders[len].orderID);
-})
 
 // push clicked item to userCart Array
 function retrieveLocStor() {
