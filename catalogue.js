@@ -135,6 +135,9 @@ function submitOrder() {
      contentType: "application/json; charset=UTF-8",
      complete: function() { console.log('done') }
   }).done(getOrders);
+
+  //userCart = [];
+  //localStorage.clear();
 }
 
 function getOrders() {
