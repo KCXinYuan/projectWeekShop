@@ -2,17 +2,33 @@
 <html>
 <head>
 <title>User Page</title>
+<link rel="stylesheet" type="text/css" href="shop.css">
 </head>
 
 <body>
-	<h1>Purchase History</h1>
-	<main>
-	</main>
-	
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js'>
-  </script>
-  <script src='catalogue.js'>
-  </script>
-  <script src='user.js'>
-  </script>
+  <header>
+    <h1>Nile</h1>
+    <div class="checkout">
+      <p id="cartItems">Item(s) in cart: <span id="numItem">0</span></p>
+
+      <a href="login.html"><button class="checkoutBtn prodBtn">Checkout</button></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav>
+      <a href="index.html"><button type="button" class="navBtn">Catalogue </button></a>
+      <a href="login.html"><button type="button" class="navBtn checkoutBtn">Cart </button></a>
+      <a href="login.html"><button type="button" class="navBtn account">Account </button></a>
+
+    </nav>
+
+  	<main>
+  	</main>
+
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js'></script>
+  <script src='catalogue.js'></script>
+  <script src='user.js'></script>
 </body>
