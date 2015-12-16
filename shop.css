@@ -150,13 +150,6 @@ nav {
   right: 0;
 }
 
-/*aside {
-  order: 3;
-  flex: 1;
-  border-top-style: solid;
-  border-width: 1px;
-}*/
-
 table {
   border-collapse: collapse;
   margin: auto;
@@ -191,4 +184,8 @@ tr:nth-child(odd) {
 #itemList {
   display: flex;
   flex-wrap: wrap;
+}
+
+#returnBtn {
+  margin: 40px;
 }
