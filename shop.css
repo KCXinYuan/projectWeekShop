@@ -242,6 +242,10 @@ input:focus {
   border: 3px solid #007f80;
 }
 
+#invalidPass {
+  color: red;
+}
+
 #history {
   padding: 10px 30px 10px 30px;
 }
