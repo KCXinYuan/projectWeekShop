@@ -209,15 +209,3 @@ function submitOrder() {
   userCart = [];// order submitted, clear userCart
   localStorage.clear();// order submitted, clear localStorage
 }
-
-
-// push localStorage to userCart Array when browser is open/refreshed
-function updateUserCart() {
-  for(var i = 0; i < localStorage.length; i++) {
-    var localStorData = localStorage.getItem(localStorage.key(i));
-    userCart.push(JSON.parse(localStorData));
-    $numItem.text(localStorage.length);
-  }
-}
-updateUserCart();
-
