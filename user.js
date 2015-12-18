@@ -10,8 +10,9 @@ console.log(username);
 		console.log('test1');
 		console.log(data);
 		data.forEach(function(order){
+			$history = $('#history');
 			if(order.userID === username){
-				newHist($main,order.date,order.orderID);
+				newHist($history,order.date,order.orderID);
 
 				$currTable = $('#'+order.orderID);
 				$currBody = $('<tbody/>');
@@ -54,5 +55,8 @@ function newHist(elem,date,orderID){
 	});
 	elem.prepend($table);
 	elem.prepend('<h2>' +dispDate+ '</h2><br>');
-	$main.prepend(sessionStorage.getItem('userName') + ', your purchased history.');
 }
+
+$userHistory=$('#userHistory');
+
+$userHistory.append(sessionStorage.getItem('userName') + "'s purchase history");
