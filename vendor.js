@@ -1,5 +1,5 @@
 //var currVendor = sessionStorage.userName;
-var currVendor = 'tomi123';
+var currVendor = sessionStorage.userName;
 var $list = $('#list');
 
 getProducts(function(products){ //Get products from server
