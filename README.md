@@ -18,6 +18,8 @@
 - When submit order button is clicked, order information is posted to Node Express, user cart is reset, local storage is reset, and user's order number is displayed to the user.
 
 - When account button is clicked, user is taken to a login page. User logs in with username and password to proceed to user's account page. User's order history is retrieved from Node Express and displayed in a table.
+- 
+- Vendor page displays all items being sold by current user. On this page the user can edit or delete existing products as well as listing new ones.
 
 Authors:
 Kevin Chuang, Tim Nguyen, Tomi Inouye, Ryan Morgan
