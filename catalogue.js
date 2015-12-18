@@ -84,7 +84,7 @@ function getUser() {
           }
         }
       if((users.length - 1) === i) {
-        alert("Invalid username and password!");
+        $('#invalidPass').text('Invalid username and password!');
       }
     }
   });
