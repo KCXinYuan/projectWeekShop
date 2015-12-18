@@ -1,4 +1,3 @@
-//var currVendor = sessionStorage.userName;
 var currVendor = sessionStorage.userName;
 var $list = $('#list');
 
