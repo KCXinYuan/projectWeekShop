@@ -217,6 +217,39 @@ tr:nth-child(odd) {
   padding-right: 20px;
 }
 
+#userLogin {
+  margin: 20px 40px 0px 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#loginInput {
+  margin: 30px;
+}
+
+#loginInput input {
+  display: block;
+  font-size: 20px;
+  width: 50%;
+  border: 2px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  margin: 8px 0px;
+}
+
+input:focus {
+  border: 3px solid #007f80;
+}
+
+#history {
+  padding: 10px 30px 10px 30px;
+}
+
+#history table {
+  margin-top: 0px;
+}
+
 .fixedNav {
   position: fixed;
   width: 25%;
@@ -268,5 +301,24 @@ tr:nth-child(odd) {
   content: none;
   transition: .75s;
   right:0px;
+  }
+
+  #loginInput {
+  margin: 10px;
+  }
+
+  #loginInput label {
+    font-size: 14px;
+  }
+
+  #loginInput input {
+    display: block;
+    font-size: 16px;
+    width: 50%;
+    border: 2px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 4px 6px;
+    margin: 6px 0px;
   }
 }
