@@ -61,6 +61,10 @@ $('.checkoutBtn').on('click',function(){
 $('.account').on('click',function(){
   sessionStorage.setItem('clicked', 'account');
 });
+// tells getUser function vendor button was clicked
+$('.vendor').on('click',function(){
+  sessionStorage.setItem('clicked', 'vendor');
+});
 
 $('#formBtn').on('click', getUser); // login button in login.html
 
@@ -80,6 +84,11 @@ function getUser() {
           // if account button was clicked, go to user.html
           if(sessionStorage.getItem('clicked') === 'account') {
             window.open('user.html', '_self');
+            return;
+          }
+          // if vendor button was clicked, go to vendor.html
+          if(sessionStorage.getItem('clicked') === 'vendor') {
+            window.open('vendor.html', '_self');
             return;
           }
         }
