@@ -246,6 +246,15 @@ input:focus {
   color: red;
 }
 
+#allHistory {
+  padding: 30px;
+}
+
+#userHistory {
+  font-size: 24px;
+  text-decoration: underline;
+}
+
 #history {
   padding: 10px 30px 10px 30px;
 }
@@ -254,9 +263,8 @@ input:focus {
   margin-top: 0px;
 }
 
-.fixedNav {
-  position: fixed;
-  width: 25%;
+#vendorAll {
+  padding: 30px;
 }
 
 @media screen and (max-width: 560px) {

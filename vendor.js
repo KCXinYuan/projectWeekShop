@@ -12,7 +12,7 @@ getProducts(function(products){ //Get products from server
 		$addDiv = $('<div/>');
 		$list.append($addDiv);
 		formgen($addDiv,products,products.length-1);
-		$addDiv.append($('<button id="add">Add</button>'));
+		$addDiv.append($('<button class="prodBtn" id="add">Add</button>'));
 		$('#add').click(function(){
 			console.log(products[products.length-1]);
 			products[products.length-1].name=$('#nameField').val();
@@ -30,8 +30,8 @@ getProducts(function(products){ //Get products from server
 		formgen($editDiv,products,formid);
 
 
-		$editDiv.append($('<button id="subBtn" type="submit">Submit</button>'));
-		$editDiv.append($('<button id="delBtn" type="submit">Remove</button>'));
+		$editDiv.append($('<button class="prodBtn" id="subBtn" type="submit">Submit</button>'));
+		$editDiv.append($('<button class="prodBtn" id="delBtn" type="submit">Remove</button>'));
 		//End form generation
 
 		$('#subBtn').click(function(){ //Submit function
@@ -70,7 +70,7 @@ function buildpage(products){
 			$secDiv.append('<p>$' +item.price+ '</p>');
 
 			$newBtn = $('<button/>',{
-				class:'editBtn',
+				class:'prodBtn editBtn',
 				id:item.id,
 				html:'Edit'
 			});
@@ -78,7 +78,7 @@ function buildpage(products){
 			$newDiv.append($secDiv);
 		}
 	});
-	$list.append('<button id="addBtn">Add New...</button>');
+	$list.append('<button class="prodBtn" id="addBtn">Add New...</button>');
 }
 ////////////////////////////////////////////////////////////////////
 function formgen(formdiv,products,formid){
